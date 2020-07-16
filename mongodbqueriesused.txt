@@ -1,0 +1,34 @@
+> db.getCollectionNames()
+[ "CallList", "Counter", "CounterList", "RegisterUser" ]
+
+function getSequenceNextValue(seqName){
+... var seqDoc=db.Counter.findAndModify({
+... query:{_id:seqName},
+... update:{$inc:{seqValue:1}},
+... new:true
+... });
+... return seqDoc.seqValue;
+... }
+
+db.createCollection("Counter");
+db.Counter.insert({_id:"itemid",seqValue:0})
+ db.RegisterUser.insert({ "_id":getSequenceNextValue("itemid"), "Name":"Advaith", "EmailiD":"advaith@gmail.com", "UserName":"Advaith", "PassWord":"Advaith","UserRole" : "SuperAdmin"})
+
+
+function getSequenceListValue(seqName){ 
+var seqDoc=db.CounterList.findAndModify({ 
+query:{_id:seqName}, 
+update:{$inc:{seqValue:1}},
+ new:true
+ }); 
+return seqDoc:seqValue; 
+}
+
+db.createCollection("CounterList");
+db.CounterList.insert({_id:"ListID",seqvalue:0})   
+db.CallList.insert({"_id":getSequenceListValue("ListID"),"Name":"Advaith","Gender","Male","OffNo":"978788676","MobNo":"89787878","HomeTelNo":"0623232",
+"EmailID":"advaith@gmail.com","CurAdd":"P.O - 78","OffAdd":"Ajman","UserID":1})
+
+
+
+
